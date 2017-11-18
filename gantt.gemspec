@@ -9,9 +9,9 @@ Gem::Specification.new do |s|
   s.version     = Gantt::VERSION
   s.authors     = ["Martin-Alexander"]
   s.email       = ["martingianna@gmail.com"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Gantt."
-  s.description = "TODO: Description of Gantt."
+  s.homepage    = "https://gantt.com"
+  s.summary     = "Summary of Gantt."
+  s.description = "Description of Gantt."
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]

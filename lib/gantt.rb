@@ -1,5 +1,5 @@
 module Gantt
-  require 'gnatt/engine'
+  require 'gantt/engine'
   class GanttConfig
     attr_accessor :load_on
     
