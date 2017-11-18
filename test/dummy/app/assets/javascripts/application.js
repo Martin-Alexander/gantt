@@ -10,4 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require snap
+//= require moment
+//= require frappe-gnatt
 //= require_tree .

@@ -1,3 +1,3 @@
-# Gantt.config do |config|
-# 	config.load_on = :task
-# end
+Gantt.config do |config|
+	config.load_on = :task
+end
