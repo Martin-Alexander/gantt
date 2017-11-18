@@ -1,1 +1,3 @@
-<%= @tasks %>
+<script>
+	RailsGantt(<%= raw JSON.generate(@tasks) %>);
+</script>
