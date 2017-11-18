@@ -4,4 +4,8 @@ class ApplicationController < ActionController::Base
   def main
     @tasks = Task.all.as_gantt_tasks
   end
+  
+  def gantt_save
+    Task.update_from_params(params)  
+  end
 end

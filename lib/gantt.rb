@@ -23,13 +23,27 @@ module Gantt
     yield(config)
     resource = eval(config.load_on.to_s.camelize)
     GanttConfig.assert_that_class_has_correct_methods(resource)
-
+    
     resource.class_eval do
       def to_gantt_task
         JSON.parse(self.to_json)
       end
     end
-
+    
+    resource.class_eval do
+      def self.update_from_params(params)
+        tasks = JSON.parse(params[:tasks])["tasks"]
+        tasks.each do |task_params|
+          task = find(task_params["id"])
+          task.update!({
+            name: task_params["name"],
+            start: Date.parse(task_params["start"]),
+            finish: Date.parse(task_params["end"]),
+            progress: task_params["progress"].to_i
+          })
+        end            
+      end
+    end
     ActiveRecord::Relation.send(:include, AsGanttTasks)
   end
 end
