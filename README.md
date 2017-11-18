@@ -1,4 +1,4 @@
-## Installation
+# Installation
 Add this line to your application's Gemfile:
 
 ```ruby
@@ -9,7 +9,7 @@ gem 'gantt', git: 'git://github.com/Martin-Alexander/gantt.git'
 bundle install
 ```
 
-## Configuration
+# Configuration
 
 The table representing the gantt task must contain the following in a migration:
 
@@ -39,9 +39,9 @@ Load JavaScript:
 //= require gantt
 ```
 
-## Usage
+# Usage
 
-# Controller
+## Controller
 
 Converts a given query of Tasks into JSON that will be read by front-end JavaScript to generate the Gantt chart
 
@@ -61,7 +61,7 @@ Recieves input from front-end JavaScript Gantt chart and applies updates on the 
 Task.update_from_params(params)
 ```
 
-# View
+## View
 
 ```html
 <svg id="gantt"></svg>
