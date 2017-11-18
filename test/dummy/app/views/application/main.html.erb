@@ -1,3 +1,7 @@
+<div id="gannt-container" style="width: 75vw; overflow-x: scroll">
+	<svg id="gantt"></svg>
+</div>
+
 <script>
-	RailsGantt(<%= raw JSON.generate(@tasks) %>);
+	var railsGantt = new RailsGantt("#gantt", <%= raw JSON.generate(@tasks) %>);
 </script>
