@@ -1,6 +1,6 @@
-module Gnatt
+module Gantt
   require 'gnatt/engine'
-  class GnattConfig
+  class GanttConfig
     attr_accessor :load_on
     
     def self.assert_that_class_has_correct_methods(_class)
@@ -19,10 +19,10 @@ module Gnatt
   end
 
   def self.config
-    config = GnattConfig.new
+    config = GanttConfig.new
     yield(config)
     resource = eval(config.load_on.to_s.camelize)
-    GnattConfig.assert_that_class_has_correct_methods(resource)
+    GanttConfig.assert_that_class_has_correct_methods(resource)
 
     resource.class_eval do
       def to_gantt_task

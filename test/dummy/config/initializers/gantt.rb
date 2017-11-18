@@ -1,3 +1,3 @@
-Gnatt.config do |config|
+Gantt.config do |config|
 	config.load_on = :task
 end
