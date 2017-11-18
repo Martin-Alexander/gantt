@@ -27,7 +27,7 @@ Initialize the model which will contain the gantt task functionality:
 # config/initializers/gantt.rb
 
 Gantt.config do |config|
-	config.load_on = :name_of_gantt_task_model
+  config.load_on = :name_of_gantt_task_model
 end
 ```
 
@@ -71,7 +71,7 @@ Task.update_from_params(params)
 </script>
 
 <%= form_tag "/gantt_save", remote: true, id: "hidden_gantt_form" do %>
-	<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-	<%= hidden_field_tag :tasks, "", id: "gnatt_tasks_input"  %>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+  <%= hidden_field_tag :tasks, "", id: "gnatt_tasks_input"  %>
 <% end %>
 ```
