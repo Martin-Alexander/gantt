@@ -63,6 +63,8 @@ Task.update_from_params(params)
 
 ## View
 
+Change `form_tag` url paramater to match wherever you are updating your Gantt tasks
+
 ```html
 <svg id="gantt"></svg>
 
