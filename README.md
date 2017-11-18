@@ -67,7 +67,7 @@ Task.update_from_params(params)
 <svg id="gantt"></svg>
 
 <script>
-	var railsGantt = new RailsGantt("#gantt", <%= raw JSON.generate(@tasks) %>);
+  var railsGantt = new RailsGantt("#gantt", <%= raw JSON.generate(@tasks) %>);
 </script>
 
 <%= form_tag "/gantt_save", remote: true, id: "hidden_gantt_form" do %>
