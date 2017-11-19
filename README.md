@@ -1,3 +1,5 @@
+*Please don't use this on an actual production application as it has security vulerabilities*
+
 # Installation
 Add this line to your application's Gemfile:
 
