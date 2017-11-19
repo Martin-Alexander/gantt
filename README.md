@@ -79,9 +79,7 @@ Task.find(3).remove_dependency(Task.find(1))
 Task.find(3).add_dependency(Task.find(4))
 ```
 
-## Controller
-
-Converts a given query of Tasks into JSON that will be read by front-end JavaScript to generate the Gantt chart
+**Converts a given query of Tasks into JSON that will be read by front-end JavaScript to generate the Gantt chart**
 
 ```ruby
 # GET '/tasks'
@@ -92,7 +90,9 @@ Converts a given query of Tasks into JSON that will be read by front-end JavaScr
 @tasks = Task.where(user: current_user).as_gantt_tasks
 ```
 
-Recieves input from front-end JavaScript Gantt chart and applies updates on the database
+## Controller
+
+The front-end JavaScript Gantt chart will send updates to a url of your choice as post HTTP request. To recieve these updates and apply them to the database pass the params of the request as a argument to the `Task::update_from_params` class method.
 
 ```ruby
 # POST 'tasks/update'
