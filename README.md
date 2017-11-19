@@ -21,13 +21,13 @@ t.integer :progress
 t.string :dependencies
 ```
 
-Initialize the model which will contain the gantt task functionality:
+Initialize the models which will contain the gantt task functionality:
 
 ```ruby
 # config/initializers/gantt.rb
 
 Gantt.config do |config|
-  config.load_on = :name_of_gantt_task_model
+  config.load_on = [:name_of_gantt_task_model]
 end
 ```
 
@@ -40,6 +40,35 @@ Load JavaScript:
 ```
 
 # Usage
+
+## Model
+
+```ruby
+# Convert a Gantt task object into a hash
+
+Task.find(3).to_gantt_task 
+#=> {id: 3, name: "Task one", start: "2017-10-22", finish: "2017-11-02", progress: "50", dependencies: "1, 2"}
+
+# Query the database for all Gantt tasks that have it as a dependency
+
+Task.find(1).is_dependency_for
+#=> <#ActiveRecord::Relation [#<Task id: 3, name ... >]>
+
+# Query the database for all Gantt tasks that it is dependent on
+
+Task.find(3).is_dependent_on
+#=> <#ActiveRecord::Relation [#<Task id: 1, name ...>, #<Task id: 2, name ...>]>
+
+# Add and remove dependencies
+
+Task.find(3).remove_dependency(1)
+Task.find(3).add_dependency("4")
+
+# or
+
+Task.find(3).remove_dependency(Task.find(1))
+Task.find(3).add_dependency(Task.find(4))
+```
 
 ## Controller
 
