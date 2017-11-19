@@ -44,28 +44,28 @@ Load JavaScript:
 ## Model
 
 
-### Convert a Gantt task object into a hash
+**Convert a Gantt task object into a hash**
 
 ```ruby
 Task.find(3).to_gantt_task 
 #=> {id: 3, name: "Task one", start: "2017-10-22", finish: "2017-11-02", progress: "50", dependencies: "1, 2"}
 ```
 
-### Query the database for all Gantt tasks that have it as a dependency
+**Query the database for all Gantt tasks that have it as a dependency**
 
 ```ruby
 Task.find(1).is_dependency_for
 #=> <#ActiveRecord::Relation [#<Task id: 3, name ... >]>
 ```
 
-### Query the database for all Gantt tasks that it is dependent on
+**Query the database for all Gantt tasks that it is dependent on**
 
 ```ruby
 Task.find(3).is_dependent_on
 #=> <#ActiveRecord::Relation [#<Task id: 1, name ...>, #<Task id: 2, name ...>]>
 ```
 
-### Add and remove dependencies
+**Add and remove dependencies**
 
 ```ruby
 Task.find(3).remove_dependency(1)
