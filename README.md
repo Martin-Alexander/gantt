@@ -1,3 +1,5 @@
+*Please don't use this on an actual production application as it has security vulerabilities*
+
 # Installation
 Add this line to your application's Gemfile:
 
@@ -21,13 +23,13 @@ t.integer :progress
 t.string :dependencies
 ```
 
-Initialize the model which will contain the gantt task functionality:
+Initialize the models which will contain the gantt task functionality:
 
 ```ruby
 # config/initializers/gantt.rb
 
 Gantt.config do |config|
-  config.load_on = :name_of_gantt_task_model
+  config.load_on = [:name_of_gantt_task_model]
 end
 ```
 
@@ -41,9 +43,43 @@ Load JavaScript:
 
 # Usage
 
-## Controller
+## Model
 
-Converts a given query of Tasks into JSON that will be read by front-end JavaScript to generate the Gantt chart
+
+**Convert a Gantt task object into a hash**
+
+```ruby
+Task.find(3).to_gantt_task 
+#=> {id: 3, name: "Task one", start: "2017-10-22", finish: "2017-11-02", progress: "50", dependencies: "1, 2"}
+```
+
+**Query the database for all Gantt tasks that have it as a dependency**
+
+```ruby
+Task.find(1).is_dependency_for
+#=> <#ActiveRecord::Relation [#<Task id: 3, name ... >]>
+```
+
+**Query the database for all Gantt tasks that it is dependent on**
+
+```ruby
+Task.find(3).is_dependent_on
+#=> <#ActiveRecord::Relation [#<Task id: 1, name ...>, #<Task id: 2, name ...>]>
+```
+
+**Add and remove dependencies**
+
+```ruby
+Task.find(3).remove_dependency(1)
+Task.find(3).add_dependency("4")
+
+# or
+
+Task.find(3).remove_dependency(Task.find(1))
+Task.find(3).add_dependency(Task.find(4))
+```
+
+**Converts a given query of Tasks into JSON that will be read by front-end JavaScript to generate the Gantt chart**
 
 ```ruby
 # GET '/tasks'
@@ -54,7 +90,9 @@ Converts a given query of Tasks into JSON that will be read by front-end JavaScr
 @tasks = Task.where(user: current_user).as_gantt_tasks
 ```
 
-Recieves input from front-end JavaScript Gantt chart and applies updates on the database
+## Controller
+
+The front-end JavaScript Gantt chart will send updates to a url of your choice as post HTTP request. To recieve these updates and apply them to the database pass the params of the request as a argument to the `Task::update_from_params` class method.
 
 ```ruby
 # POST 'tasks/update'
