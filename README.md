@@ -13,14 +13,17 @@ bundle install
 
 # Configuration
 
-The table representing the gantt task must contain the following in a migration:
+This gem does not have any migration generators. You will have to make sure that all tables that will be representing Gantt task object have the following columns in thier table:
 
 ```ruby
+# [...]
 t.string :name
 t.date :start
 t.date :finish
 t.integer :progress
 t.string :dependencies
+t.string :custom_class
+# [...]
 ```
 
 Initialize the models which will contain the gantt task functionality:
