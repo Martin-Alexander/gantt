@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20171118040818) do
     t.date "finish"
     t.integer "progress"
     t.string "dependencies"
+    t.string "custom_class"
   end
 
 end

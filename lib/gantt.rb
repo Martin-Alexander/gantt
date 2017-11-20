@@ -23,7 +23,8 @@ module Gantt
 					name: task_params["name"],
 					start: Date.parse(task_params["start"]),
 					finish: Date.parse(task_params["end"]),
-					progress: task_params["progress"].to_i
+					progress: task_params["progress"].to_i,
+					custom_class: task_params["custom_class"]
 				})
 			end            
 		end
@@ -109,7 +110,7 @@ module Gantt
     attr_accessor :load_on
     
     def self.assert_that_class_has_correct_methods(_class)
-      [:name, :start, :finish, :progress, :dependencies].each do |method|
+      [:name, :start, :finish, :progress, :dependencies, :custom_class].each do |method|
         unless _class.new.methods.include?(method)
           raise StandardError, "#{_class} should respond to `#{method.to_s}` method"
         end

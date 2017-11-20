@@ -2,6 +2,16 @@
 	<svg id="gantt"></svg>
 </div>
 
+<style>
+	.green .bar-progress {
+		fill: green;
+	}
+
+	.red .bar-progress {
+		fill: red;
+	}
+</style>
+
 <script>
 	var railsGantt = new RailsGantt("#gantt", <%= raw JSON.generate(@tasks) %>);
 </script>
