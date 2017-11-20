@@ -25,10 +25,10 @@ module Gantt
           finish: Date.parse(task_params["end"]),
           progress: task_params["progress"].to_i,
           custom_class: task_params["custom_class"]
-				})
-			end            
-		end
-	end
+        })
+      end            
+    end
+  end
 
   module GanttInstanceMethods
 
