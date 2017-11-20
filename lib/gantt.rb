@@ -1,6 +1,5 @@
 module Gantt
   require 'gantt/engine'
-	
 
   module GanttActiveRecordRelationMethods
 
