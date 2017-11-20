@@ -118,3 +118,5 @@ Change `form_tag` url paramater to match wherever you are updating your Gantt ta
   <%= hidden_field_tag :tasks, "", id: "gnatt_tasks_input"  %>
 <% end %>
 ```
+
+The `RailsGantt` contructor can be passed an optional third argument to specify the HTML structure of the info window.
