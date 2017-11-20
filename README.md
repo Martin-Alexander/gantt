@@ -106,7 +106,7 @@ Task.update_from_params(params)
 
 Change `form_tag` url paramater to match wherever you are updating your Gantt tasks
 
-```html
+```erb
 <svg id="gantt"></svg>
 
 <script>
