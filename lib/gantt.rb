@@ -118,16 +118,16 @@ module Gantt
   end
 
   def self.config
-    config = GanttConfig.new
-    yield(config)
+    # config = GanttConfig.new
+    # yield(config)
 
     ActiveRecord::Relation.send(:include, GanttActiveRecordRelationMethods)
 
-    config.load_on.each do |class_symbol|
-      resource = eval(class_symbol.to_s.camelize)
-      GanttConfig.assert_that_class_has_correct_methods(resource)
-      resource.send(:include, GanttInstanceMethods)
-      resource.send(:extend, GanttClassMethods)
-    end
+    # config.load_on.each do |class_symbol|
+      # resource = eval(class_symbol.to_s.camelize)
+      # GanttConfig.assert_that_class_has_correct_methods(resource)
+      # resource.send(:include, GanttInstanceMethods)
+      # resource.send(:extend, GanttClassMethods)
+    # end
   end
 end
