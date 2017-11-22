@@ -110,6 +110,10 @@ The front-end JavaScript Gantt chart will send updates to a url of your choice a
 
 ```ruby
 # POST 'tasks/update'
+
+# ID of Gantt task that was changed
+@task = Task.find(params[:task_id])
+
 Task.update_from_params(params)
 ```
 
