@@ -13,6 +13,9 @@ bundle install
 
 # Configuration
 
+```ruby
+```
+
 This gem does not have any migration generators. You will have to make sure that all tables that will be representing Gantt task object have the following columns in thier table:
 
 ```ruby
@@ -31,9 +34,7 @@ Initialize the models which will contain the gantt task functionality:
 ```ruby
 # config/initializers/gantt.rb
 
-Gantt.config do |config|
-  config.load_on = [:name_of_gantt_task_model]
-end
+Gantt.config
 ```
 
 Load JavaScript:

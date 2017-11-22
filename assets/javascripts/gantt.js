@@ -2,7 +2,7 @@
 //= require moment
 //= require frappe-gnatt
 
-var RailsGantt = function(element, taskJSON, customPopup = false) {
+var RailsGantt = function(element, taskJSON, customPopup) {
   var formattedTasks = function(tasks) {
     tasks.forEach(function(task) {
       task.end = task.finish;
@@ -16,8 +16,9 @@ var RailsGantt = function(element, taskJSON, customPopup = false) {
   this.create(element, customPopup);
 }
 
-RailsGantt.prototype.sendToServer = function() {
+RailsGantt.prototype.sendToServer = function(idOfChangedTask) {
   document.getElementById("gnatt_tasks_input").setAttribute("value", JSON.stringify({tasks: this.tasks}));
+  document.getElementById("task_changed_id").setAttribute("value", idOfChangedTask)
   document.getElementById("hidden_gantt_form").submit();	
 }
 
@@ -27,13 +28,11 @@ RailsGantt.prototype.create = function(element, customPopup) {
     var custom_popup_html = customPopup; 
   } else {
     var custom_popup_html = function(task) {
-      return `
-        <div class="details-container">
-          <h5>${task.name}</h5>
-          <p>Expected to finish by ${task._end.format('MMM D')}</p>
-          <p>${task.progress}% completed!</p>
-        </div>
-      `;
+      return "<div class='details-container'>" +
+          "<h5>${task.name}</h5>" +
+          "<p>Expected to finish by ${task._end.format('MMM D')}</p>" +
+          "<p>${task.progress}% completed!</p>" +
+        "</div>";
     }		
   }
   this.gantt = new Gantt(element, this.tasks, {
@@ -44,10 +43,10 @@ RailsGantt.prototype.create = function(element, customPopup) {
           task.start = start["_d"].getFullYear() + "-" + (start["_d"].getMonth() + 1) + "-" + start["_d"].getDate();
         }
       });
-      self.sendToServer();
+      self.sendToServer(changed_task.id);
     },
     on_progress_change: function(changed_task, start, end) {
-      self.sendToServer();
+      self.sendToServer(changed_task.id);
     },
     custom_popup_html: custom_popup_html
   });
