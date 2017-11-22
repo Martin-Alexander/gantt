@@ -13,6 +13,8 @@ bundle install
 
 # Configuration
 
+Import Gantt task functionality to your model
+
 ```ruby
 class Task < ActiveRecord::Base
   
