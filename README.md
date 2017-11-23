@@ -13,7 +13,17 @@ bundle install
 
 # Configuration
 
+Import Gantt task functionality to your model
+
 ```ruby
+class Task < ActiveRecord::Base
+  
+  include Gantt::GanttInstanceMethods
+  extend Gantt::GanttClassMethods
+  
+  # [...]
+
+end
 ```
 
 This gem does not have any migration generators. You will have to make sure that all tables that will be representing Gantt task object have the following columns in thier table:
@@ -100,6 +110,10 @@ The front-end JavaScript Gantt chart will send updates to a url of your choice a
 
 ```ruby
 # POST 'tasks/update'
+
+# ID of Gantt task that was changed
+@task = Task.find(params[:task_id])
+
 Task.update_from_params(params)
 ```
 
@@ -117,6 +131,7 @@ Change `form_tag` url paramater to match wherever you are updating your Gantt ta
 <%= form_tag "/gantt_save", remote: true, id: "hidden_gantt_form" do %>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <%= hidden_field_tag :tasks, "", id: "gnatt_tasks_input"  %>
+  <%= hidden_field_tag :task_changed, "", id: "task_changed_id"  %>
 <% end %>
 ```
 
