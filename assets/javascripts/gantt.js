@@ -29,9 +29,9 @@ RailsGantt.prototype.create = function(element, customPopup) {
   } else {
     var custom_popup_html = function(task) {
       return "<div class='details-container'>" +
-          "<h5>${task.name}</h5>" +
-          "<p>Expected to finish by ${task._end.format('MMM D')}</p>" +
-          "<p>${task.progress}% completed!</p>" +
+          "<h5>" + task.name + "</h5>" +
+          "<p>Expected to finish by " + task._end.format('MMM D') + "</p>" +
+          "<p>" + task.progress + " completed!</p>" +
         "</div>";
     }		
   }

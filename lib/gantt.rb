@@ -39,13 +39,17 @@ module Gantt
     # Queries for all gantt tasks that depend on it
     def is_dependency_for
       key = id
-      self.class.where(
-        "dependencies LIKE ? OR dependencies LIKE ? OR dependencies LIKE ? OR dependencies LIKE ?",
-        "#{key}",
-        "#{key},%",
-        "%, #{key},%",
-        "%, #{key}"
-      )		
+      if key
+        self.class.where(
+          "dependencies LIKE ? OR dependencies LIKE ? OR dependencies LIKE ? OR dependencies LIKE ?",
+          "#{key}",
+          "#{key},%",
+          "%, #{key},%",
+          "%, #{key}"
+        )
+      else
+        return self.class.none
+      end
     end
 
     # Queries for all gantt tasks that it depends on
