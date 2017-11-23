@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def gantt_save
+    byebug
     Task.update_from_params(params)  
   end
 end

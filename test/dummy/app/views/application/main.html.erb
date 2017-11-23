@@ -4,6 +4,12 @@
   <svg id="gantt"></svg>
 </div>
 
+<div class="btn-group mt-1 mx-auto">
+  <button id="gantt-day" type="button" class="gantt-period btn btn-sm btn-secondary">Day</button>
+  <button id="gantt-week" type="button" class="gantt-period btn btn-sm btn-secondary active">Week</button>
+  <button id="gantt-month" type="button" class="gantt-period btn btn-sm btn-secondary">Month</button>
+</div>
+
 <style>
   .green .bar-progress {
     fill: green;
@@ -16,9 +22,16 @@
 
 <script>
   var railsGantt = new RailsGantt("#gantt", <%= raw JSON.generate(@tasks) %>);
+
+  document.querySelectorAll(".gantt-period").forEach(function(button) {
+    button.addEventListener("click", function(event) {
+      railsGantt.gantt.change_view_mode(event.currentTarget.innerHTML);
+    })
+  });
 </script>
 
 <%= form_tag "/gantt_save", remote: true, id: "hidden_gantt_form" do %>
   <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
   <%= hidden_field_tag :tasks, "", id: "gnatt_tasks_input"  %>
+  <%= hidden_field_tag :task_id, "", id: "task_changed_id"  %>
 <% end %>
