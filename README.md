@@ -39,7 +39,7 @@ t.string :custom_class
 # [...]
 ```
 
-Initialize the models which will contain the gantt task functionality:
+Initialize
 
 ```ruby
 # config/initializers/gantt.rb
